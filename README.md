@@ -20,6 +20,7 @@ Dataset: Bank Marketing Data Set (contains information on customer demographics,
 ## Steps
 
 0. Signup for an AWS account or Signin to AWS account if you already have one
+
 1. Create an Amazon SageMaker notebook instance
   - Sign in to the Amazon SageMaker console, and in the top right corner, select your preferred AWS Region. This tutorial uses the US West (Oregon) Region.
   - In the left navigation pane, choose Notebook instances, then choose Create notebook instance.
@@ -29,27 +30,27 @@ Dataset: Bank Marketing Data Set (contains information on customer demographics,
     * For Elastic inference, keep the default selection of none.
     * For Platform identifier, keep the default selection.
   - In the Permissions and encryption section, for IAM role, choose Create a new role, and in the Create an IAM role dialog box, select Any S3 bucket and choose
-    * Create role.
+    Create role.
     (Note: If you already have a bucket that you’d like to use instead, choose Specific S3 buckets and specify the bucket name.)
   - Keep the default settings for the remaining options and choose Create notebook instance.
-    (In the Notebook instances section, the new SageMaker-Tutorial notebook instance is displayed with a Status of Pending. The notebook is ready when the Status changes to InService.)
+    (In the Notebook instances section, the new SageMaker-Tutorial notebook instance is displayed with a Status of Pending. The notebook is ready when the Status          changes to InService.)
+
 2. Prepare the data
   - After your SageMaker-Tutorial notebook instance status changes to InService, choose Open Jupyter.
   - In Jupyter, choose New and then choose conda_python3.
-  - In a new code cell on your Jupyter notebook, copy and paste the following code and choose Run.
-  - Create the S3 bucket to store your data. Copy and paste the following code into the next code cell and choose Run.
-    (Note: Make sure to replace the bucket_name your-s3-bucket-name with a unique S3 bucket name. If you don't receive a success message after running the code           change the bucket name and try again.)
-  - Download the data to your SageMaker instance and load the data into a dataframe. Copy and paste the following code into the next code cell and choose Run.
-  - Shuffle and split the data into training data and test data. Copy and paste the following code into the next code cell and choose Run.
-    The training data (70% of customers) is used during the model training loop. You use gradient-based optimization to iteratively refine the model parameters. 
-     Gradient-based optimization is a way to find model parameter values that minimize the model error, using the gradient of the model loss function. The test data       (remaining 30% of customers) is used to evaluate the performance of the model and measure how well the trained model generalizes to unseen data.
-
+  - Create the S3 bucket to store your data.
+    (Note: Make sure to replace the bucket_name "peizo-s3-bucket" with a unique S3 bucket name. If you don't receive a success message after running the code              change the bucket name and try again.)
+  - Download the data to your SageMaker instance and load the data into a dataframe. 
+  - Shuffle and split the data into training data and test data. 
+    The training data (70% of customers) is used during the model training loop. I have used gradient-based optimization to iteratively refine the model parameters. 
+    Gradient-based optimization is a way to find model parameter values that minimize the model error, using the gradient of the model loss function. The test data       (remaining 30% of customers) is used to evaluate the performance of the model and measure how well the trained model generalizes to unseen data.
 
 3. Train the ML model
   - Run the code block in model.py
-  - Set up the Amazon SageMaker session, create an instance of the XGBoost model (an estimator), and define the model’s hyperparameters. Copy and paste the               following code into the next code cell and choose Run.
-  - Start the training job. Copy and paste the following code into the next code cell and choose Run.
-      This code trains the model using gradient optimization on a ml.m4.xlarge instance. After a few minutes, you should see the training logs being generated in           your Jupyter notebook.
+  - Set up the Amazon SageMaker session, create an instance of the XGBoost model (an estimator), and define the model’s hyperparameters.
+  - Start the training job
+    This code trains the model using gradient optimization on a ml.m4.xlarge instance. After a few minutes, you should see the training logs being generated in           your Jupyter notebook.
+ 
  4. Deploy the model
     In this step, you deploy the trained model to an endpoint, reformat and load the CSV data, then run the model to create predictions.
   
@@ -60,8 +61,8 @@ Dataset: Bank Marketing Data Set (contains information on customer demographics,
     In this step, you evaluate the performance and accuracy of the machine learning model.
  
  6. Clean up
-    In this step, you terminate the resources you used in this lab.
-    Important: Terminating resources that are not actively being used reduces costs and is a best practice. Not terminating your resources will result in charges to       your account.
+    In this step, you terminate the resources used in lab
+    Important: Terminating resources that are not actively being used reduces costs and is a best practice. Not terminating your resources will result in charges to       your account
    - Delete your endpoint
    - Delete your training artifacts and S3 bucket
    - Delete your SageMaker Notebook 
